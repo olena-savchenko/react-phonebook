@@ -18,10 +18,11 @@ export default function App () {
   // масив контактів у стані App
     const [contacts, setContacts] = useState(() => {
       const savedContacts = localStorage.getItem("contacts");
-      return savedContacts ? JSON.parse(savedContacts) : initialContacts;
+      return savedContacts && JSON.parse(savedContacts).length > 0 ? JSON.parse(savedContacts) : initialContacts;
 
     });
-
+  
+    // кожного разу, коли змінюється стан contacts дані пишуться в localStorage
     useEffect(() => {
       localStorage.setItem("contacts", JSON.stringify(contacts));
   }, [contacts])
@@ -39,7 +40,19 @@ export default function App () {
       console.log(newContact);
 
     }
+    
+    const deleteContact = (idContact) => {
+      setContacts((prevContacts)=> {
+        return prevContacts.filter(contact => contact.id !== idContact);
+      });
+    }
 
+   {/* 
+   Метод filter не змінює оригінальний масив, він створює новий масив з елементами,
+    які відповідають заданій умові.
+  При виклику filter ви передаєте умову, яка буде перевірятися для кожного елемента масиву. 
+  Якщо умова повертає true, елемент включається до нового масиву, інакше - відфільтровується.
+   */} 
     
     // Логіка фільтрації повинна бути нечутливою до регістру.
     {/*
@@ -54,7 +67,7 @@ export default function App () {
             <h1>Phonebook</h1>
             <ContactForm addContact={addContact}/>
             <SearchBar inputValue={inputValue} onChange={handleChangeInputValue}/>
-            <ContactList contacts={contacts} />
+            <ContactList contacts={contacts} onDelete={deleteContact} />
 
         </div>
    
