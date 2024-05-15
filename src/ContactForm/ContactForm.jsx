@@ -10,7 +10,7 @@ export default function ContactForm ({addContact}) {
             name: values.name,
             number: values.number
         });
-
+    
         actions.resetForm();
     }
 
