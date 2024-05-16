@@ -1,6 +1,6 @@
-    import { useState } from "react";
-
+import { useId } from "react";
     export default function  SearchBar ({inputValue, onChange}) {
+        const searchId = useId();
 
         const handleChange = (evt) => {
 
@@ -16,8 +16,8 @@
 
         return (
             <div>
-                <label htmlFor="textValue">Input contact by name</label>
-                <input type="text" id="textValue" onChange={handleChange}/>
+                <label htmlFor={searchId}>Input contact by name</label>
+                <input type="text" id={searchId} onChange={handleChange}/>
             
             </div>
         )
