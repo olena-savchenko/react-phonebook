@@ -35,17 +35,23 @@ export default function App () {
       setInputValue(newValue);
     }
 
+  // додавання нового контакту
     const addContact = (newContact) => {
       setContacts((prevContacts) => [...prevContacts, newContact]);
       console.log(newContact);
 
     }
-    
+   
+  // видалення контакту 
     const deleteContact = (idContact) => {
       setContacts((prevContacts)=> {
         return prevContacts.filter(contact => contact.id !== idContact);
       });
     }
+
+  // у змінну зберігаємо результат фільтрації масиву контактів, де ім'я контакта у нижньому регістрі,
+  // includes перевіряє, чи міститься певний елемент стрічці. 
+    const filteredContacts= contacts.filter(contact => contact.name.toLowerCase().includes(inputValue.toLocaleLowerCase()));
 
    {/* 
    Метод filter не змінює оригінальний масив, він створює новий масив з елементами,
@@ -67,7 +73,7 @@ export default function App () {
             <h1>Phonebook</h1>
             <ContactForm addContact={addContact}/>
             <SearchBar inputValue={inputValue} onChange={handleChangeInputValue}/>
-            <ContactList contacts={contacts} onDelete={deleteContact} />
+            <ContactList contacts={filteredContacts} onDelete={deleteContact} />
 
         </div>
    

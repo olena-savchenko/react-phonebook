@@ -9,7 +9,7 @@
             // це бест практик, але не систаксична помилка, працювати буде
             onChange(evt.target.value);
     
-            console.log(evt.target.value);
+            // console.log(evt.target.value);
             
     
         }
