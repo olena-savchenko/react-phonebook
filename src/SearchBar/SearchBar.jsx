@@ -16,9 +16,8 @@
 
         return (
             <div>
-                <label>Input contact by name</label>
-                <input type="text"  onChange={handleChange}/>
-                <p>{inputValue}</p>
+                <label htmlFor="textValue">Input contact by name</label>
+                <input type="text" id="textValue" onChange={handleChange}/>
             
             </div>
         )
